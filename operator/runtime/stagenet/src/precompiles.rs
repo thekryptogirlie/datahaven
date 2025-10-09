@@ -22,6 +22,7 @@ use pallet_evm_precompile_blake2::Blake2F;
 use pallet_evm_precompile_bn128::{Bn128Add, Bn128Mul, Bn128Pairing};
 use pallet_evm_precompile_call_permit::CallPermitPrecompile;
 use pallet_evm_precompile_collective::CollectivePrecompile;
+use pallet_evm_precompile_conviction_voting::ConvictionVotingPrecompile;
 use pallet_evm_precompile_file_system::FileSystemPrecompile;
 use pallet_evm_precompile_identity::IdentityPrecompile;
 use pallet_evm_precompile_modexp::Modexp;
@@ -105,6 +106,11 @@ type DataHavenPrecompilesAt<R> = (
     PrecompileAt<
         AddressU64<2064>,
         CollectivePrecompile<R, TreasuryCouncilInstance>,
+        (CallableByContract, CallableByPrecompile),
+    >,
+    PrecompileAt<
+        AddressU64<2066>,
+        ConvictionVotingPrecompile<R>,
         (CallableByContract, CallableByPrecompile),
     >,
     PrecompileAt<
